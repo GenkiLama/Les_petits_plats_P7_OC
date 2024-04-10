@@ -1,7 +1,7 @@
-import {recipes} from '../data/recipes'
+import getData from "../api/getData"
 
 export default function renderCards(){
-    const cardsListHtml = recipes.map(recipe=>{
+    const cardsListHtml = getData().map(recipe=>{
         return `
             <article>
                 <img src='./images/${recipe.image}' alt='${recipe.name}' class='article_img' />
@@ -18,7 +18,7 @@ export default function renderCards(){
                                 return `
                                     <div class="ingredient">
                                         <p class='ingredient_txt'>${ingredient.ingredient}<p>
-                                        <p class='ingredient_txt grey'>${ingredient.quantity} ${ingredient.unit || ''}</p>
+                                        <p class='ingredient_txt grey'>${ingredient.quantity || ''} ${ingredient.unit || ''}</p>
                                     </div>
                                 `
                             }).join(' ')}
