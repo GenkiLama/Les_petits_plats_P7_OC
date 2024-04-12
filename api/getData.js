@@ -2,23 +2,10 @@ import {recipes} from '../data/recipes'
 import { filter } from './setFilter'
 
 
-export default function getData(){
-    let filteredRecipes = recipes
-
-    if(filter.inputFilter.length>2){
-        filteredRecipes = inputFilter(filteredRecipes)
-    }
-    if(filter.ingFilter.length>0){
-        filteredRecipes = ingFiltered(filteredRecipes)
-    }
-    if(filter.appFilter.length>0){
-        filteredRecipes  = appFiltered(filteredRecipes)
-    }
-    if(filter.ustFilter.length>0){
-        filteredRecipes = ustFiltered(filteredRecipes)
-        console.log('FILTEREDRECIPES',filteredRecipes)
-    }
-    return filteredRecipes
+export default function getData() {
+    return [inputFilter, ingFiltered, appFiltered, ustFiltered].reduce((filteredRecipes, filterFunc) => {
+        return filterFunc.length > 0 ? filterFunc(filteredRecipes) : filteredRecipes;
+    }, recipes);
 }
 
  function inputFilter(filteredRecipes){
@@ -53,12 +40,15 @@ function appFiltered(filteredRecipes){
 
 function ustFiltered(filteredRecipes){
     const filteredArray = filteredRecipes.filter(recipe=>{
-        return filter.ustFilter.every(ust=>{
-            const isIncluded = recipe.ustensils.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(ust)
-            return isIncluded
-        })
-    })
-    return filteredArray
+        return filter.ustFilter.every(ustFilterItem=>{
+            return recipe.ustensils.some(ustensil=>{
+                const normalizedUstensil = ustensil.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                const normalizedUstFilterItem = ustFilterItem.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                return normalizedUstensil.includes(normalizedUstFilterItem);
+            });
+        });
+    });
+    return filteredArray;
 }
 /* function inputFilter(){
     const filteredArray=[]
