@@ -12,7 +12,6 @@ function setIngFilter(ing){
     filter.ingFilter.splice(filter.ingFilter.indexOf(ing),1)
     : 
     filter.ingFilter.push(ing)
-    console.log(filter)
 }
 function setAppFilter(app){
     filter.appFilter.includes(app) ? 
@@ -26,7 +25,6 @@ function setUstFilter(ust){
     filter.ustFilter.splice(filter.ustFilter.indexOf(ust),1)
     : 
     filter.ustFilter.push(ust)
-    console.log(filter)
 }
 
 export {filter, setInputFilter,setIngFilter,setAppFilter, setUstFilter}

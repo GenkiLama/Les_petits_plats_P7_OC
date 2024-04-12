@@ -4,6 +4,7 @@ import { filter } from './setFilter'
 
 export default function getData(){
     let filteredRecipes = recipes
+
     if(filter.inputFilter.length>2){
         filteredRecipes = inputFilter(filteredRecipes)
     }
@@ -12,6 +13,9 @@ export default function getData(){
     }
     if(filter.appFilter.length>0){
         filteredRecipes  = appFiltered(filteredRecipes)
+    }
+    if(filter.ustFilter.length>0){
+        filteredRecipes = ustFiltered(filteredRecipes)
         console.log('FILTEREDRECIPES',filteredRecipes)
     }
     return filteredRecipes
@@ -40,13 +44,22 @@ function ingFiltered(filteredRecipes){
 function appFiltered(filteredRecipes){
     const filteredArray = filteredRecipes.filter(recipe=>{
         return filter.appFilter.every(app=>{
-            const isIncluded = recipe.appliance.includes(app)
-        return isIncluded
+            const isIncluded = recipe.appliance.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(app);
+            return isIncluded;
+        });
+    });
+    return filteredArray;
+}
+
+function ustFiltered(filteredRecipes){
+    const filteredArray = filteredRecipes.filter(recipe=>{
+        return filter.ustFilter.every(ust=>{
+            const isIncluded = recipe.ustensils.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(app)
+            return isIncluded
         })
     })
     return filteredArray
 }
-
 /* function inputFilter(){
     const filteredArray=[]
     for( let i=0 ; i <recipes.length ; i++){

@@ -33,6 +33,7 @@ function init(){
     document.querySelectorAll('.ustFilter').forEach(app=>{
         app.addEventListener('click',function(e){
             setUstFilter(e.target.id)
+            init()
         })
     })
     displayCount(getData().length, searchInput.value)
