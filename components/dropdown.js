@@ -1,27 +1,32 @@
 import getData from "../api/getData";
+import { filter } from "../api/setFilter";
 
 function displayFilterTags(){
     const listHTML = getUniqIngList().map(item=>{
-        return `
-        <li class='ingFilter' id="${item}">${item}</li>
-        `
+        return filter.ingFilter.includes(item) ?
+        `<li class='ingFilter active' id="${item}">${item}</li>` 
+        : 
+        `<li class='ingFilter' id="${item}">${item}</li>`
+        
     }).join(' ')
     return listHTML
 }
 
 function displayAppFilterTags(){
     const appHtml = getUniqAppList().map(item=>{
-        return `
-        <li class="appFilter" id="${item}">${item}</li>
-        `
+        return filter.appFilter.includes(item) ?
+        `<li class="appFilter active" id="${item}">${item}</li>`
+        :
+        `<li class="appFilter" id="${item}">${item}</li>`
     }).join(' ')
     return appHtml
 }
 function displayUstFilterTags(){
     const ustHtml = getUniqUstList().map(item=>{
-        return `
-        <li class="ustFilter" id="${item}">${item}</li>
-        `
+        return filter.ustFilter.includes(item) ?
+        `<li class="ustFilter active" id="${item}">${item}</li>`
+        :
+        `<li class="ustFilter" id="${item}">${item}</li>`
     }).join(' ')
     return ustHtml
 }
