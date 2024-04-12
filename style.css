@@ -96,3 +96,11 @@ article{
 .grey{
   color:grey;
 }
+
+
+.filters_count{
+  display:flex;
+}
+.maxi{
+  font-size:40px;
+}
