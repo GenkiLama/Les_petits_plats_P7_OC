@@ -33,7 +33,7 @@ function ingFiltered(filteredRecipes){
     const filteredArray = filteredRecipes.filter(recipe => {
         return filter.ingFilter.every(ing => {
             const isIncluded = recipe.ingredients.some(ingredient => 
-                ingredient.ingredient.toLowerCase().trim().includes(ing.toLowerCase().trim())
+                ingredient.ingredient.toLowerCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(ing.toLowerCase().trim())
             );
             return isIncluded;
         });
@@ -54,7 +54,7 @@ function appFiltered(filteredRecipes){
 function ustFiltered(filteredRecipes){
     const filteredArray = filteredRecipes.filter(recipe=>{
         return filter.ustFilter.every(ust=>{
-            const isIncluded = recipe.ustensils.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(app)
+            const isIncluded = recipe.ustensils.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(ust)
             return isIncluded
         })
     })
