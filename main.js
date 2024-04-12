@@ -10,7 +10,6 @@ const searchInput = document.querySelector('#search-recipe')
 searchInput.addEventListener('input',function(){
     const inputValue = searchInput.value
     setInputFilter(inputValue.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
-    displayCount(renderCards().length, inputValue)
     getData()
     init()
 })
@@ -20,13 +19,14 @@ function init(){
     document.querySelectorAll('.ingFilter').forEach(ing=>{
         ing.addEventListener('click',function(e){
             setIngFilter(e.target.id)
-            getData()
+            init()
         })
     })
     document.querySelector('.appList').innerHTML= displayAppFilterTags()
     document.querySelectorAll('.appFilter').forEach(app=>{
         app.addEventListener('click',function(e){
             setAppFilter(e.target.id)
+            init()
         })
     })
     document.querySelector('.ustList').innerHTML = displayUstFilterTags()
@@ -35,5 +35,6 @@ function init(){
             setUstFilter(e.target.id)
         })
     })
+    displayCount(getData().length, searchInput.value)
 }
 init()

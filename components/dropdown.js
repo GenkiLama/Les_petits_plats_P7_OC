@@ -28,7 +28,7 @@ function displayUstFilterTags(){
 function getUniqIngList(){
     let ingredientsList = []
     getData().forEach(recipe => {
-        recipe.ingredients.forEach(ing => ingredientsList.push(ing.ingredient))
+        recipe.ingredients.forEach(ing => ingredientsList.push(ing.ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")))
     })
     let uniqIngList = [...new Set(ingredientsList)].sort()
     console.log('ING LIST', uniqIngList)

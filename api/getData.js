@@ -9,10 +9,12 @@ export default function getData(){
     }
     if(filter.ingFilter.length>0){
         filteredRecipes = ingFiltered(filteredRecipes)
+    }
+    if(filter.appFilter.length>0){
+        filteredRecipes  = appFiltered(filteredRecipes)
         console.log('FILTEREDRECIPES',filteredRecipes)
     }
     return filteredRecipes
-    
 }
 
  function inputFilter(filteredRecipes){
@@ -33,6 +35,16 @@ function ingFiltered(filteredRecipes){
         });
     });
     return filteredArray;
+}
+
+function appFiltered(filteredRecipes){
+    const filteredArray = filteredRecipes.filter(recipe=>{
+        return filter.appFilter.every(app=>{
+            const isIncluded = recipe.appliance.includes(app)
+        return isIncluded
+        })
+    })
+    return filteredArray
 }
 
 /* function inputFilter(){
