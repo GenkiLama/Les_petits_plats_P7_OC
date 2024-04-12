@@ -8,9 +8,8 @@ export default function getData(){
         filteredRecipes = inputFilter(filteredRecipes)
     }
     if(filter.ingFilter.length>0){
-        console.log('TAGUEULE')
         filteredRecipes = ingFiltered(filteredRecipes)
-        console.log(filteredRecipes)
+        console.log('FILTEREDRECIPES',filteredRecipes)
     }
     return filteredRecipes
     
@@ -25,11 +24,15 @@ export default function getData(){
     return filteredArray
 } 
 function ingFiltered(filteredRecipes){
-    const filteredArray = filteredRecipes.filter(recipe=>{
-        recipe.ingredients.some(ingredient=> ingredient === filter.ingFilter)
-    })
-    console.log('FILTEREDARRAY', filteredArray)
-    return filteredArray
+    const filteredArray = filteredRecipes.filter(recipe => {
+        return filter.ingFilter.every(ing => {
+            const isIncluded = recipe.ingredients.some(ingredient => 
+                ingredient.ingredient.toLowerCase().trim().includes(ing.toLowerCase().trim())
+            );
+            return isIncluded;
+        });
+    });
+    return filteredArray;
 }
 
 /* function inputFilter(){
