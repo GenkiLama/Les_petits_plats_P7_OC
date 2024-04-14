@@ -96,7 +96,17 @@ article{
 .grey{
   color:grey;
 }
-
+li{
+  list-style: none;
+  padding:10px;
+  background-color: White;
+  border-bottom: 1px solid black;
+  width: 200px;
+}
+li:hover{
+  background-color: pink;
+  cursor: pointer;
+}
 
 .filters_count{
   display:flex;
@@ -106,5 +116,12 @@ article{
   font-size:40px;
 }
 .active{
-  color:red
+  background-color:#FFD15B
+}
+
+.displayOn{
+  display:block;
+}
+.displayOff{
+  display: none;
 }

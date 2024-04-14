@@ -8,7 +8,7 @@ export default function getData() {
     }, recipes);
 }
 
- function inputFilter(filteredRecipes){
+function inputFilter(filteredRecipes){
     const filteredArray = filteredRecipes.filter(recipe=>
         recipe.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(filter.inputFilter) ||
         recipe.description.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(filter.inputFilter) ||
