@@ -10,7 +10,7 @@ document.querySelector('header').innerHTML= header()
 const searchInput = document.querySelector('#search-recipe')
 searchInput.addEventListener('input',function(){
     const inputValue = searchInput.value
-    setInputFilter(inputValue.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
+    setInputFilter(inputValue.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " "))
     getData()
     init()
 })

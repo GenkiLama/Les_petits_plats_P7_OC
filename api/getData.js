@@ -9,11 +9,13 @@ export default function getData() {
 }
 
 function inputFilter(filteredRecipes){
+    console.log('prout')
     const filteredArray = filteredRecipes.filter(recipe=>
-        recipe.name.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ") ||
+        recipe.name.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ").includes(filter.inputFilter) ||
         recipe.description.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ").includes(filter.inputFilter) ||
         recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ").includes(filter.inputFilter))
     )
+    console.log('TURBOPROUT',filteredArray)
     return filteredArray
 } 
 function ingFiltered(filteredRecipes){
