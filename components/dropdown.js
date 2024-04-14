@@ -39,7 +39,7 @@ function displayUstFilterTags(){
 function getUniqIngList(){
     let ingredientsList = []
     getData().forEach(recipe => {
-        recipe.ingredients.forEach(ing => ingredientsList.push(ing.ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")))
+        recipe.ingredients.forEach(ing => ingredientsList.push(ing.ingredient.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ")))
     })
     let uniqIngList = [...new Set(ingredientsList)].sort()
     return uniqIngList
@@ -48,7 +48,7 @@ function getUniqIngList(){
 function getUniqAppList(){
     let appList = []
     getData().forEach(recipe=>{
-        appList.push(recipe.appliance.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
+        appList.push(recipe.appliance.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " "))
     })
     let uniqAppList = [...new Set(appList)].sort()
     return uniqAppList
@@ -57,7 +57,7 @@ function getUniqAppList(){
 function getUniqUstList(){
     let ustList = []
     getData().forEach(recipe=>{
-        recipe.ustensils.forEach(ust=>ustList.push(ust.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")))
+        recipe.ustensils.forEach(ust=>ustList.push(ust.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ")))
     })
     let uniqUstList = [...new Set(ustList)].sort()
     return uniqUstList
