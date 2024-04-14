@@ -3,10 +3,9 @@ import { getUniqAppList , getUniqIngList , getUniqUstList } from '../components/
 
 function renderIngTags(){
     const ingTagHtml = getUniqIngList().map(item=>{
-        let plop = item.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ");
         return filter.ingFilter.includes(item) ?
         `
-        <button class="ingTag" id='tag-${plop}'>${item}</button>
+        <button class="ingTag" id='tag-${item}'>${item}</button>
         `:
         ''
     }).join(' ')

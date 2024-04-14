@@ -36,7 +36,6 @@ filterUstInp.addEventListener('input',function(){
 })
 
 function init(){
-    console.log(filter)
     document.querySelector('section').innerHTML= renderCards().join(' ')
     document.querySelector('.filterList').innerHTML= displayFilterTags()
     document.querySelectorAll('.ingFilter').forEach(ing=>{
@@ -65,7 +64,6 @@ function init(){
     document.querySelectorAll('.ingTag').forEach(tag=>{
         tag.addEventListener('click', function(e){
             const targetID = e.target.id.replace('tag-','')
-            console.log(targetID)
             setIngFilter(targetID)
             init()
         })
