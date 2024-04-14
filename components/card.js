@@ -1,7 +1,6 @@
 import getData from "../api/getData"
 
 export default function renderCards(){
-    
     const cardsListHtml = getData().map(recipe=>{
         return `
             <article>

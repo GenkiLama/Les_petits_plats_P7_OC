@@ -37,13 +37,17 @@ main{
 .container_search{
   width: 700px;
   margin-top:40px;
+  position:relative;
 }
 .container_input{
   width: 100%;
-  height: 50px;
+  height: 60px;
   border-radius:8px;
 }
 .recipes_list{
+  z-index: -1;
+  width: 1200px;
+  margin:-20px auto;
   display:flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -80,6 +84,7 @@ article{
 .article_img{
   object-fit: cover;
   max-height: 250px;
+  z-index: 0;
 }
 .ingredients_container{
   display:flex;
@@ -97,29 +102,39 @@ article{
   color:grey;
 }
 .filterInput{
-  width: 200px;
+  position:relative;
+  width: 90%;
   padding:10px;
-  border:none;
-  border-bottom: 1px solid black;
+  border:1px solid lightgray;
+  margin:10px;
+  z-index: 1000;
 }
+.filterInput::placeholder{
+  text-align: right;
+}
+
 li{
   list-style: none;
   padding:10px;
   background-color: White;
-  border-bottom: 1px solid black;
   width: 200px;
 }
 li:hover{
-  background-color: pink;
+  background-color: coral;
   cursor: pointer;
 }
 
 .filters_count{
+  margin-top:30px;
   display:flex;
   justify-content: space-between;
+  height: 50px;
+  z-index: 10000;
 }
 .maxi{
-  font-size:40px;
+  font-size:30px;
+  font-family: "Anton", sans-serif;
+  letter-spacing: -1px;
 }
 .active{
   background-color:#FFD15B
@@ -132,30 +147,133 @@ li:hover{
   display: none;
 }
 .tagsContainer{
+  width: 1200px;
   display:flex;
-  width: 100%;
-  flex-direction: row;
-  border:3Px solid red;
+  flex-wrap: wrap;
   gap:3px;
-  flex-wrap:wrap;
+  margin:0 auto;
 }
 .ingTagsContainer,.appTagsContainer,.ustTagsContainer{
   display:flex;
   gap:3px;
 }
-.tags,.ingTag{
-  display: flex;
-  padding:15px 20px;
-  border:none;
-  background-color: #FFD15B;
-  cursor: pointer;
-  border-radius:10px;
-  width: 200px;
-  font-family: "Manrope", sans-serif;
+.tags,.ingTag,.appTag,.ustTag{
+  display:flex;
   align-items: center;
   align-content: center;
+  background:#FFD15B;
+  padding:20px;
+  width: 200px;
+  border-radius:10px;
   justify-content: space-between;
+  margin-top:10px;
 }
 .fa-xmark{
   color:black;
+}
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color:white;
+  height: fit-content;
+  width: 20%;
+  z-index: 1000;
+  box-shadow: 3px 3px 4px 1px rgba(0,0,0,0.63);
+  
+}
+.ingFilterList,.appFilterList,.ustFilterList{
+  transition:height 0s;
+  height: 0px;
+  overflow: hidden;
+  z-index: 1000;
+  border-radius: 10px;
+  position:relative
+}
+.unfold{
+  height: 100%;
+  z-index: 10000;
+}
+.filterButton{
+  height: 50px;
+  border:none;
+  background-color: white;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  justify-content: center;
+  border-radius:10px;
+  width: 200px;
+}
+.ingFilter,.appFilter,.ustFilter{
+  width: 100%;
+  z-index: 100;
+  height: 50px;
+  align-items: center;
+}
+.clearCross{
+  position:absolute;
+  right: 70px;
+  top:50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: none;
+}
+.checkWrapper{
+  display:flex;
+  align-items: center;
+  z-index: 1000;
+}
+.filtrIcon{
+  transition: transform 0.5s ease-in-out
+}
+.rotate{
+  transform:rotateX(180deg);
+}
+.zeroRecipes{
+  font-family: "Manrope", sans-serif;
+  background: white;
+  padding:40px;
+  text-align: center;
+  border-radius:10px;
+}
+.zeroRecipes_content{
+  font-weight: bold;
+  color:red;
+}
+.count0{
+  width: 1200px;
+  margin-top:30px;
+
+}
+.loop{
+  position:absolute;
+  right: 4px;
+  top:50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  object-fit: contain;
+  background-image: url("./images/svloop1.svg");
+}
+.loop:hover{
+  background-image: url("./images/svloop2.svg");
+}
+
+.inputContainerFilter{
+  position: relative;
+}
+.vectorCrossInput {
+  position:absolute;
+  right: 40px;
+  top:42%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  z-index: 10000000;
+  cursor: pointer;
+
 }

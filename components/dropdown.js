@@ -4,6 +4,7 @@ import {inputIngredientValue, inputApplianceValue,inputUstensilsValue} from '../
 
 function displayFilterTags(){
     const listHTML = getUniqIngList().map(item=>{
+        console.log(item.includes(inputIngredientValue))
         const styling = item.includes(inputIngredientValue) ? 'displayOn' : 'displayOff'
         return filter.ingFilter.includes(item) ?
         `<li class='ingFilter ${styling} active' id="${item}">${item}</li>` 

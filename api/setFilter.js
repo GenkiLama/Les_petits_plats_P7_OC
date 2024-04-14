@@ -4,8 +4,11 @@ let filter = {
     appFilter:[],
     ustFilter:[]
 }
-function setInputFilter (input){
-    filter = {...filter, inputFilter:input}
+function setInputFilter(input) {
+    filter = {
+        ...filter,
+        inputFilter: input.length > 2 ? input : ''
+    };
 }
 function setIngFilter(ing){
     filter.ingFilter.includes(ing) ? 

@@ -5,7 +5,7 @@ function renderIngTags(){
     const ingTagHtml = getUniqIngList().map(item=>{
         return filter.ingFilter.includes(item) ?
         `
-        <button class="ingTag" id='tag-${item}'>${item}</button>
+        <div class="ingTag"><p>${item}</p> <i id='tag-${item}' class="fa-solid fa-xmark"></i></div>
         `:
         ''
     }).join(' ')
@@ -15,7 +15,7 @@ function renderAppTags(){
     const appTagHtml = getUniqAppList().map(item=>{
         return filter.appFilter.includes(item) ?
         `
-        <button class="appTag" id='tag-${item}'>${item}</button>
+        <div class="appTag"><p>${item}</p><i id='tag-${item}' class="fa-solid fa-xmark"></i></div>
         `:
         ''
     }).join(' ')
@@ -25,7 +25,7 @@ function renderUstTags(){
     const ustTagHtml = getUniqUstList().map(item=>{
         return filter.ustFilter.includes(item) ?
         `
-        <button class="ustTag" id='tag-${item}'>${item}</button>
+        <div class="ustTag"><p>${item}</p><i id='tag-${item}' class="fa-solid fa-xmark"></i></div>
         `:
         ''
     }).join(' ')

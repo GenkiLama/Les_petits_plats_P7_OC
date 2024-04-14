@@ -1,57 +1,143 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css">
+    <meta charset="UTF-8" >
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
     <title>Les petits plats</title>
   </head>
   <body>
     <div id="app">
       <main>
         <header></header>
-        <div class='filters_count'>
-          <div>
-            <input 
-                class='filterInput'
-                type='text'
-                id='filterIngInput'
-                maxlength='10'>
-            <ul class="filterList"></ul>
-          </div>
-          <div>
-            <input 
-                class='filterInput'
-                type='text'
-                id='filterAppInput'
-                maxlength='10'>
-            <ul class="appList"></ul>
-          </div>
-          <div>
-            <input 
-                class='filterInput'
-                type='text'
-                id='filterUstInput'
-                maxlength='10'>
-            <ul class="ustList"></ul>
-          </div>
+        <div class="filters_count">
+          <div class="wrapper">
+            <div class="checkWrapper">
+              <button class="filterButton" id="ingFilterList">
+                Ingrédient
+              </button>
+              <svg
+                class="filtrIcon filtrIcon_ingFilterList"
+                width="15"
+                height="8"
+                viewBox="0 0 15 8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 1L7.5 7L14 1"
+                  stroke="#1B1B1B"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
 
+            <div class="ingFilterList unfoldable" id="ingFilterList_unfoldable">
+              <div class="inputContainerFilter">
+                <input
+                  class="filterInput"
+                  type="text"
+                  id="filterIngInput"
+                  maxlength="10"
+                  placeholder="&#128270;"
+                />
+                <img class='vectorCrossInput' id='filterIngInput_resetInp' src="./images/vectorCross.svg">
+              </div>
+              <ul class="filterList"></ul>
+            </div>
+          </div>
+          <div class="wrapper">
+            <div class="checkWrapper">
+              <button class="filterButton" id="appFilterList">Appareils</button>
+              <svg
+                class="filtrIcon filtrIcon_appFilterList"
+                width="15"
+                height="8"
+                viewBox="0 0 15 8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 1L7.5 7L14 1"
+                  stroke="#1B1B1B"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <div class="appFilterList unfoldable" id="appFilterList_unfoldable">
+              <div class="inputContainerFilter">
+                <input
+                  class="filterInput"
+                  type="text"
+                  id="filterAppInput"
+                  maxlength="10"
+                  placeholder="&#128270;"
+                />
+                <img class='vectorCrossInput' id='filterAppInput_resetInp' src="./images/vectorCross.svg">
+              
+              </div>
+              <ul class="appList"></ul>
+            </div>
+          </div>
+          <div class="wrapper">
+            <div class="checkWrapper">
+              <button class="filterButton" id="ustFilterList">Ustensils</button>
+              <svg
+                class="filtrIcon filtrIcon_ustFilterList"
+                width="15"
+                height="8"
+                viewBox="0 0 15 8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 1L7.5 7L14 1"
+                  stroke="#1B1B1B"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <div class="ustFilterList unfoldable" id="ustFilterList_unfoldable">
+              <div class="inputContainerFilter">
+              <input
+                  class="filterInput"
+                  type="text"
+                  id="filterUstInput"
+                  maxlength="10"
+                  placeholder="&#128270;"
+                />
+                <img class='vectorCrossInput' id='filterUstInput_resetInp' src="./images/vectorCross.svg">
+              
+              </div>
+              <ul class="ustList"></ul>
+            </div>
+          </div>
           <div class="count"></div>
         </div>
-        <div class='tagsContainer'>
+        <div class="count0"></div>
+        <div class="tagsContainer">
           <div class="ingTagsContainer"></div>
           <div class="appTagsContainer"></div>
           <div class="ustTagsContainer"></div>
         </div>
-        <section class='recipes_list'></section>
+        <section class="recipes_list"></section>
       </main>
     </div>
     <script type="module" src="/main.js"></script>
-    <script src="https://kit.fontawesome.com/3178b0bae3.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/3178b0bae3.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

@@ -9,8 +9,26 @@ import { renderIngTags , renderAppTags , renderUstTags } from './components/tag'
 document.querySelector('header').innerHTML= header()
 const searchInput = document.querySelector('#search-recipe')
 searchInput.addEventListener('input',function(){
-    const inputValue = searchInput.value
-    setInputFilter(inputValue.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " "))
+        const inputValue = searchInput.value
+        if(inputValue.length<3){
+            document.querySelector('.clearCross').style.display='none'
+        }else{
+            document.querySelector('.clearCross').style.display='block'
+        }
+        setInputFilter(inputValue.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " "))
+        init()
+})
+document.querySelectorAll('.filterButton').forEach(btn=>{
+    btn.addEventListener('click',function(e){
+        document.getElementById(`${e.target.id}_unfoldable`).classList.toggle('unfold')
+        document.querySelector(`.filtrIcon_${e.target.id}`).classList.toggle('rotate')
+    })
+})
+
+document.querySelector('.clearCross').addEventListener('click',function(){
+    searchInput.value = ""
+    document.querySelector('.clearCross').style.display='none'
+    setInputFilter(searchInput.value)
     getData()
     init()
 })
@@ -52,8 +70,8 @@ function init(){
         })
     })
     document.querySelector('.ustList').innerHTML = displayUstFilterTags()
-    document.querySelectorAll('.ustFilter').forEach(app=>{
-        app.addEventListener('click',function(e){
+    document.querySelectorAll('.ustFilter').forEach(ust=>{
+        ust.addEventListener('click',function(e){
             setUstFilter(e.target.id)
             init()
         })
