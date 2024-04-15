@@ -53,9 +53,9 @@ function ustFiltered(filteredRecipes){
 /* function inputFilter(){
     const filteredArray=[]
     for( let i=0 ; i <recipes.length ; i++){
-        if(recipes[i].name.toLowerCase().includes(filter.inputFilter) ||
-        recipes[i].description.toLowerCase().includes(filter.inputFilter) ||
-        recipes[i].ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(filter.inputFilter))
+        if(recipes[i].name.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ").includes(filter.inputFilter)||
+        recipes[i].description.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ").includes(filter.inputFilter) ||
+        recipes[i].ingredients.some(ingredient => ingredient.ingredient.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ").includes(filter.inputFilter))
         ){
             filteredArray.push(recipes[i])
         }
