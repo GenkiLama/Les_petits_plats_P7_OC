@@ -38,17 +38,23 @@ export let inputApplianceValue =''
 export let inputUstensilsValue =''
 
 const filterIngInput = document.getElementById('filterIngInput')
-filterIngInput.addEventListener('input',function(){
-    inputIngredientValue = filterIngInput.value
-    init()
-})
+filterIngInput.addEventListener('input', function() {
+    const { value } = filterIngInput;
+    document.querySelector('#filterIngInput_resetInp').style.display = value.length > 0 ? 'block' : 'none';
+    inputIngredientValue = value;
+    init();
+});
 const filterAppInput = document.getElementById('filterAppInput')
 filterAppInput.addEventListener('input',function(){
+    const { value } = filterAppInput
+    document.querySelector('#filterAppInput_resetInp').style.display = value.length > 0 ? 'block' : 'none'
     inputApplianceValue = filterAppInput.value
     init()
 })
 const filterUstInput = document.getElementById('filterUstInput')
 filterUstInput.addEventListener('input',function(){
+    const { value } = filterUstInput
+    document.querySelector('#filterUstInput_resetInp').style.display = value.length > 0 ? 'block' : 'none'
     inputUstensilsValue = filterUstInput.value
     init()
 })
@@ -108,12 +114,15 @@ function init(){
             const targetID = e.target.id.replace('_resetInp','')
             if(targetID==="filterIngInput"){
                 inputIngredientValue = ''
+                document.querySelector('#filterIngInput_resetInp').style.display='none'
             }
             if(targetID==="filterAppInput"){
                 inputApplianceValue = ''
+                document.querySelector('#filterAppInput_resetInp').style.display='none'
             }
             if(targetID==="filterUstInput"){
                 inputUstensilsValue = ''
+                document.querySelector('#filterUstInput_resetInp').style.display='none'
             }
             document.querySelector(`#${targetID}`).value = ''
             init()

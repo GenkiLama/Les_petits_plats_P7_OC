@@ -275,5 +275,6 @@ li:hover{
   height: 10px;
   z-index: 10000000;
   cursor: pointer;
-
+  display:none;
 }
+
