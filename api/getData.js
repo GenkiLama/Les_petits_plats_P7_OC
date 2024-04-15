@@ -50,17 +50,17 @@ function ustFiltered(filteredRecipes){
     });
     return filteredArray;
 }
-/* function inputFilter(){
+/*  function inputFilter(filteredRecipes){
     const filteredArray=[]
-    for( let i=0 ; i <recipes.length ; i++){
-        if(recipes[i].name.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ").includes(filter.inputFilter)||
-        recipes[i].description.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ").includes(filter.inputFilter) ||
-        recipes[i].ingredients.some(ingredient => ingredient.ingredient.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ").includes(filter.inputFilter))
+    for( let i=0 ; i <filteredRecipes.length ; i++){
+        if(filteredRecipes[i].name.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ").includes(filter.inputFilter)||
+        filteredRecipes[i].description.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ").includes(filter.inputFilter) ||
+        filteredRecipes[i].ingredients.some(ingredient => ingredient.ingredient.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ").includes(filter.inputFilter))
         ){
             filteredArray.push(recipes[i])
         }
     }
     return filteredArray
-} */
+}  */
 
 
