@@ -107,8 +107,6 @@ function init(){
         el.addEventListener('click',function(e){
             const targetID = e.target.id.replace('_resetInp','')
             if(targetID==="filterIngInput"){
-                filterIngInput
-                console.log('MERRRRDE')
                 inputIngredientValue = ''
             }
             if(targetID==="filterAppInput"){
