@@ -37,21 +37,22 @@ export let inputIngredientValue =''
 export let inputApplianceValue =''
 export let inputUstensilsValue =''
 
-const filterIngInp = document.getElementById('filterIngInput')
-filterIngInp.addEventListener('input',function(){
-    inputIngredientValue = filterIngInp.value
+const filterIngInput = document.getElementById('filterIngInput')
+filterIngInput.addEventListener('input',function(){
+    inputIngredientValue = filterIngInput.value
     init()
 })
-const filterAppInp = document.getElementById('filterAppInput')
-filterAppInp.addEventListener('input',function(){
-    inputApplianceValue = filterAppInp.value
+const filterAppInput = document.getElementById('filterAppInput')
+filterAppInput.addEventListener('input',function(){
+    inputApplianceValue = filterAppInput.value
     init()
 })
-const filterUstInp = document.getElementById('filterUstInput')
-filterUstInp.addEventListener('input',function(){
-    inputUstensilsValue = filterUstInp.value
+const filterUstInput = document.getElementById('filterUstInput')
+filterUstInput.addEventListener('input',function(){
+    inputUstensilsValue = filterUstInput.value
     init()
 })
+
 
 function init(){
     document.querySelector('section').innerHTML= renderCards().join(' ')
@@ -99,6 +100,24 @@ function init(){
         tag.addEventListener('click', function(e){
             const targetID = e.target.id.replace('tag-','')
             setUstFilter(targetID)
+            init()
+        })
+    })
+    document.querySelectorAll('.vectorCrossInput').forEach(el=>{
+        el.addEventListener('click',function(e){
+            const targetID = e.target.id.replace('_resetInp','')
+            if(targetID==="filterIngInput"){
+                filterIngInput
+                console.log('MERRRRDE')
+                inputIngredientValue = ''
+            }
+            if(targetID==="filterAppInput"){
+                inputApplianceValue = ''
+            }
+            if(targetID==="filterUstInput"){
+                inputUstensilsValue = ''
+            }
+            document.querySelector(`#${targetID}`).value = ''
             init()
         })
     })
