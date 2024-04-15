@@ -8,14 +8,14 @@ export default function getData() {
     }, recipes);
 }
 
-function inputFilter(filteredRecipes){
+/* function inputFilter(filteredRecipes){
     const filteredArray = filteredRecipes.filter(recipe=>
         recipe.name.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ").includes(filter.inputFilter) ||
         recipe.description.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ").includes(filter.inputFilter) ||
         recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ").includes(filter.inputFilter))
     )
     return filteredArray
-} 
+}  */
 function ingFiltered(filteredRecipes){
     const filteredArray = filteredRecipes.filter(recipe => {
         return filter.ingFilter.every(ing => {
@@ -50,7 +50,7 @@ function ustFiltered(filteredRecipes){
     });
     return filteredArray;
 }
-/*  function inputFilter(filteredRecipes){
+ function inputFilter(filteredRecipes){
     const filteredArray=[]
     for( let i=0 ; i <filteredRecipes.length ; i++){
         if(filteredRecipes[i].name.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ").includes(filter.inputFilter)||
@@ -61,6 +61,6 @@ function ustFiltered(filteredRecipes){
         }
     }
     return filteredArray
-}  */
+} 
 
 
