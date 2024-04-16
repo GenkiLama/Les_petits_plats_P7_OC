@@ -6,7 +6,10 @@ import displayCount from './components/count'
 import {displayFilterTags , displayAppFilterTags, displayUstFilterTags , getUniqIngList , getUniqAppList , getUniqUstList} from './components/dropdown'
 import { renderIngTags , renderAppTags , renderUstTags } from './components/tag'
 
+//Affichage du header
 document.querySelector('header').innerHTML= header()
+
+//Gestion de l'input utilisateur dans la recherche 
 const searchInput = document.querySelector('#search-recipe')
 searchInput.addEventListener('input',function(){
         const inputValue = searchInput.value
@@ -18,13 +21,9 @@ searchInput.addEventListener('input',function(){
         setInputFilter(inputValue.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " "))
         init()
 })
-document.querySelectorAll('.filterButton').forEach(btn=>{
-    btn.addEventListener('click',function(e){
-        document.getElementById(`${e.target.id}_unfoldable`).classList.toggle('unfold')
-        document.querySelector(`.filtrIcon_${e.target.id}`).classList.toggle('rotate')
-    })
-})
 
+//Affichage conditionnel de la croix de suppression dans l'input, 
+//Gestion du reset de l'input au clic
 document.querySelector('.clearCross').addEventListener('click',function(){
     searchInput.value = ""
     document.querySelector('.clearCross').style.display='none'
@@ -33,10 +32,20 @@ document.querySelector('.clearCross').addEventListener('click',function(){
     init()
 })
 
+//Gestion du déroulé des dropdown TAGS
+document.querySelectorAll('.filterButton').forEach(btn=>{
+    btn.addEventListener('click',function(e){
+        document.getElementById(`${e.target.id}_unfoldable`).classList.toggle('unfold')
+        document.querySelector(`.filtrIcon_${e.target.id}`).classList.toggle('rotate')
+    })
+})
+
+
 export let inputIngredientValue =''
 export let inputApplianceValue =''
 export let inputUstensilsValue =''
 
+//Gestion de la croix de suppression des inputs de recherche par tags
 const filterIngInput = document.getElementById('filterIngInput')
 filterIngInput.addEventListener('input', function() {
     const { value } = filterIngInput;
@@ -61,8 +70,11 @@ filterUstInput.addEventListener('input',function(){
 
 
 function init(){
+    //affichage des recettes
     document.querySelector('section').innerHTML= renderCards().join(' ')
+    //affichage des filtres par tags
     document.querySelector('.filterList').innerHTML= displayFilterTags()
+    //ajout de l'element aux filtres au clic
     document.querySelectorAll('.ingFilter').forEach(ing=>{
         ing.addEventListener('click',function(e){
             setIngFilter(e.target.id)
@@ -83,9 +95,12 @@ function init(){
             init()
         })
     })
+    //affichage du nombre de recettes
     displayCount(getData().length, searchInput.value)
 
+    //affichage des tags selectionnés
     document.querySelector('.ingTagsContainer').innerHTML = renderIngTags()
+    //retrait du tag / filtre au clic 
     document.querySelectorAll('.ingTag').forEach(tag=>{
         tag.addEventListener('click', function(e){
             const targetID = e.target.id.replace('tag-','')
@@ -109,6 +124,7 @@ function init(){
             init()
         })
     })
+    //affichage  croix et reset des inputs de tags
     document.querySelectorAll('.vectorCrossInput').forEach(el=>{
         el.addEventListener('click',function(e){
             const targetID = e.target.id.replace('_resetInp','')
