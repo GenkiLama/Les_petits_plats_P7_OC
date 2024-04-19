@@ -50,7 +50,7 @@ function ustFiltered(filteredRecipes){
     });
     return filteredArray;
 }
- function inputFilter(filteredRecipes){
+ /* function inputFilter(filteredRecipes){
     const filteredArray=[]
     for( let i=0 ; i <filteredRecipes.length ; i++){
         if(filteredRecipes[i].name.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ").includes(filter.inputFilter)||
@@ -61,6 +61,28 @@ function ustFiltered(filteredRecipes){
         }
     }
     return filteredArray
+}  */
+function inputFilter(filteredRecipes){
+    const filteredArray = [];
+    for(let i = 0; i < filteredRecipes.length; i++){
+        //Nouvelle version en se passant la methode .some , lui préférant une nouvelle
+        //boucle for et un break pour optimiser les perfs en ne parcourant pas systématiquement
+        //tout le tableau.
+        let includesInputFilter = false;
+        for(let j = 0; j < filteredRecipes[i].ingredients.length; j++) {
+            let ingredient = filteredRecipes[i].ingredients[j].ingredient.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ");
+            if(ingredient.includes(filter.inputFilter)) {
+                includesInputFilter = true;
+                break;
+            }
+        }
+        if(filteredRecipes[i].name.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ").includes(filter.inputFilter) ||
+           filteredRecipes[i].description.toLowerCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/'/g, " ").includes(filter.inputFilter) ||
+           includesInputFilter){
+            filteredArray.push(filteredRecipes[i]);
+        }
+    }
+    return filteredArray;
 } 
 
 
